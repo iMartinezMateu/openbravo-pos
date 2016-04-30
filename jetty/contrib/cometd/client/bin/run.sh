@@ -1,0 +1,2 @@
+#!/bin/sh
+java -Xmx2048M -cp target/classes:target/test-classes/:../bayeux/target/classes/:../../../lib/cometd/cometd-api-1.0.beta4.jar:../../../lib/ext/jetty-client-6.1.12.jar:../../../lib/ext/jetty-sslengine-6.1.12.jar:../../../lib/jre1.5/jetty-util5-6.1.12.jar:../../../lib/jetty-util-6.1.12.jar:../../../lib/jetty-6.1.12.jar:../../../lib/servlet-api-2.5-6.1.12.jar org.mortbay.cometd.client.BayeuxLoadGenerator

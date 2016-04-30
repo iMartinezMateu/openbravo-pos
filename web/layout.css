@@ -1,0 +1,234 @@
+/*
+   Openbravo POS is a point of sales application designed for touch screens.
+   Copyright (C) 2007-2009 Openbravo, S.L.
+   http://sourceforge.net/projects/openbravopos
+
+    This file is part of Openbravo POS.
+
+    Openbravo POS is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Openbravo POS is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Openbravo POS.  If not, see <http://www.gnu.org/licenses/>.
+ */
+  /*
+  Document   : CSS layout for PDA module for
+  Version    : iPhone, iPod Touch
+  Created on : Nov 20, 2008, 10:31:08 AM
+  Author     : jaroslawwozniak
+  */
+
+
+  body {
+      background:#fff;
+      margin-top: 4px;
+      margin-right:4px;
+      margin-bottom:4px;
+      margin-left:0px;
+      padding:3px;
+  }
+
+  img.button {
+      height:40px;
+      width:40px;
+      padding-left:2px;
+      border:none;
+  }
+
+  .button {
+      padding-left:2px;
+
+  }
+
+  img.logo {
+      height:45px;
+      width:183px;
+      padding-bottom:20px;
+      border: none;
+  }
+
+  img.back {
+      height:40px;
+      width:40px;
+      padding-top:3px;
+      padding-left:20px;
+      padding-right:10px;
+      border:none;
+      vertical-align:middle;
+      
+  }
+
+a {
+    text-decoration:none;
+    color:black;
+}
+
+a:visited  {
+    text-decoration:none;
+}
+
+a:hover {
+    text-decoration:none;
+}
+  .pad {
+      margin-top:10px;
+  }
+
+  .pad2 {
+      /*height:140px;*/
+      padding:2px;
+      padding-bottom:30px;
+  }
+
+  .pad3 {
+     
+  }
+
+  .pad4 {
+      margin-left: 50px;
+      margin-top:40px;
+  }
+
+  .floor {
+      padding:5px;
+      height:40px;
+      width:70px;
+      font:bold 11px Arial;
+      margin-top:3px;
+      margin-bottom:3px;
+      }
+
+  .notbusy {
+      padding:5px;
+      height:40px;
+      width:70px;
+      font:bold 12px Arial;
+      margin-top:3px;
+      background-image: url("images/edit_group.png");
+      background-repeat: no-repeat;
+      background-position: 250%;
+      }
+  .busy {
+      padding:5px;
+      height:40px;
+      width:70px;
+      font:bold 12px Arial;
+      background-image: url("images/edit_group.png");
+      background-repeat: no-repeat;
+      background-position: left;
+      margin-top:3px;
+  }
+
+  h   {
+      font:bold 20px/26px Arial;
+  }
+
+  table	{
+      border:0;
+      border-collapse:collapse;
+      border-bottom:1px solid #333;
+  }
+  th		{
+      
+      font:bold 11px Arial;
+      text-align:center;
+      padding:2px;
+      border-bottom:1px solid #333;
+  }
+  th.name{
+      font:bold 11px Arial;
+      width:120px;
+   
+      padding:2px;
+     /* width:100px;*/
+  }
+  th.units {
+      width:44px;
+      padding:2px;
+  }
+  th.normal {
+      width:50px;
+      padding:2px;
+     
+     
+  }
+  td	{
+      
+      font:normal 11px Arial;
+      padding:2px;
+  }
+
+  td.name{
+      font:normal 11px Arial;
+      width:120px;
+     
+      padding:2px;
+      text-align: center;
+   /*   width:100px;*/
+  }
+
+  td.category{
+      font:normal 11px Arial;
+      width:120px;
+      height: 40px;
+      padding:2px;
+      text-align: center;
+      font:bold 11px Arial;
+   /*   width:100px;*/
+  }
+
+  td.units {
+      width:44px;
+      padding:2px;
+}
+
+  td.normal {
+      padding:5px;
+      width:50px;
+      text-align: center;
+  }
+
+  tr.odd	{
+      background:#e1ffdb;
+  }
+  tr.even {
+      background:#ffffff;
+  }
+  tr.selected		{
+      background:#51990F;
+      color:#fff;
+  }
+
+  td+td+td {
+      text-align:right;
+  }
+  .logo {
+      height:100px;
+  }
+  .middle {  
+      height:140px;
+  }
+  .bottom {
+      height:20px;
+  }
+
+p.total {
+    text-align:right;
+    padding-right: 25%;
+}
+
+.notification {
+    background-color: yellow;
+    font-size: 14px;
+    margin-bottom: 15px;
+    width: 250px;
+}
+
+

@@ -1,0 +1,48 @@
+<project name="Test application" basedir=".">
+  <property name="project.outputDirectory" value="target" />
+  <property name="project.version" value="6.1.12" />
+  <property name="M2_REPO" value="${user.home}/.m2/repository/" />
+
+  <property name="jetty.version" value="6.1.12" />
+
+  <path id="jetty.plugin.classpath">
+    <fileset dir="${M2_REPO}">
+      <include name="org/mortbay/jetty/jetty-ant/${project.version}/jetty-ant-${project.version}.jar" />
+      <include name="org/mortbay/jetty/jetty/${jetty.version}/jetty-${jetty.version}.jar" />
+      <include name="org/mortbay/jetty/jetty-util/${jetty.version}/jetty-util-${jetty.version}.jar" />
+      <include name="org/mortbay/jetty/jetty-plus/${jetty.version}/jetty-plus-${jetty.version}.jar" />
+      <include name="org/mortbay/jetty/jetty-naming/${jetty.version}/jetty-naming-${jetty.version}.jar" />
+      <include name="org/mortbay/jetty/servlet-api-2.5/${jetty.version}/servlet-api-2.5-${jetty.version}.jar" />
+      <include name="org/mortbay/jetty/jsp-api-2.1/${jetty.version}/jsp-api-2.1-${jetty.version}.jar" />
+      <include name="org/mortbay/jetty/jsp-2.1/${jetty.version}/jsp-2.1-${jetty.version}.jar" />
+      <include name="org/eclipse/jdt/core/3.1.1/core-3.1.1.jar" />
+    </fileset>
+  </path>
+
+  <taskdef classpathref="jetty.plugin.classpath" resource="tasks.properties" loaderref="jetty.loader" />
+  <typedef name="selectChannelConnector" classname="org.mortbay.jetty.nio.SelectChannelConnector" classpathref="jetty.plugin.classpath" loaderref="jetty.loader" />
+
+  <target name="jetty.run">
+    <jetty tempDirectory="${project.outputDirectory}">
+      <connectors>
+        <selectChannelConnector port="8090" />
+      </connectors>
+      
+      <systemProperties>
+        <systemProperty name="testProperty" value="true" />
+      </systemProperties>
+      <webApp name="Test Web Application 1" warfile="webapp/" contextpath="/testapp1" scanIntervalSeconds="5">
+        <scanTargets dir="webapp">
+          <include name="scan-test" />
+        </scanTargets>
+        <classes dir="webapp" includes="scan-test/te*.txt" />
+      </webApp>
+      <webApp name="Test Web Application 2" warfile="webapp2/" contextpath="/testapp2" scanIntervalSeconds="5">
+        <scanTargets dir="webapp2">
+          <include name="scan-test" />
+        </scanTargets>
+      </webApp>
+      <webApp name="Test Web Application 3" warfile="webapp.war" contextpath="/testapp2" />
+    </jetty>
+  </target>
+</project>

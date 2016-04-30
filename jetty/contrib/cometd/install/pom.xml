@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>org.mortbay.jetty</groupId>
+    <artifactId>cometd-project</artifactId>
+    <version>6.1.12</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mortbay.jetty</groupId>
+  <artifactId>cometd-install</artifactId>
+  <version>6.1.12</version>
+  <packaging>pom</packaging>
+  <name>Cometd :: Jetty :: Install</name>
+  <url>http://www.cometd.com</url>
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-deps</id>
+            <phase>install</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.cometd.java</groupId>
+                  <artifactId>cometd-api</artifactId>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>../../../lib/cometd</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copyfiles</id>
+            <phase>install</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <copy failonerror="false" file="../bayeux/target/cometd-jetty-${project.version}.jar" 
+		todir="../../../lib/cometd" />
+                <copy failonerror="false" file="../demo/target/cometd-demo-${project.version}.war"
+		tofile="../../../webapps/cometd.war" />
+              </tasks>
+            </configuration>
+          </execution>
+          <execution>
+            <id>clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <delete failonerror="false" dir="../../../lib/cometd"/>
+                <delete failonerror="false" file="../../../webapps/cometd.war"/>
+              </tasks>
+            </configuration>
+          </execution>		  
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.mortbay.jetty</groupId>
+      <artifactId>cometd-jetty</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+</project>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+    <form-beans>
+        <form-bean name="login" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="login" type="java.lang.String" />
+            <form-property name="password" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="FloorBean" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="floorId" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="inputFormPlace" type="com.openbravo.pos.pda.struts.forms.FloorForm" />
+        <form-bean name="productsBean" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="categoryId" type="java.lang.String" />
+            <form-property name="place" type="java.lang.String" />
+            <form-property name="mode" type="java.lang.String" />
+            <form-property name="floorId" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="addProduct" type="com.openbravo.pos.pda.struts.forms.AddedProductForm" />
+        <form-bean name="modifyProduct" type="com.openbravo.pos.pda.struts.forms.FloorForm" />
+        <form-bean name="productsAjax" type="com.openbravo.pos.pda.struts.forms.AddedProductForm"/>
+        <form-bean name="showFloors" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="floorId" type="java.lang.String" />
+            <form-property name="place" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="FloorAjax" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="floorId" type="java.lang.String" />
+        </form-bean>
+    </form-beans>
+    <global-exceptions>
+    </global-exceptions>
+    <global-forwards>
+        <forward name="showPlace" path="/sec/showPlace.do"/>
+        <forward name="showFloors" path="/showFloors.do"/>
+        <forward name="welcome"  path="/Welcome.do"/>
+        <forward name="login" path="/login.do" />
+        <forward name="products" path="/sec/showProducts.do" />
+        <forward name="floorsAjax" path="/sec/floorAjaxAction.do"/>
+        <forward name="addProduct" path="/sec/addProduct.do" />
+        <forward name="productsAjax" path="/sec/productAjaxAction.do" />
+        <forward name="removeProduct" path="/sec/removeProduct.do" />
+        <forward name="logout" path="/logout.do" />
+    </global-forwards>
+    <action-mappings>
+        <action input="/showFloors" name="showFloors" path="/showFloors" scope="request"
+            type="com.openbravo.pos.pda.struts.actions.FloorAction">
+            <forward name="success" path="/jsp/showFloors.jsp"/>
+            <forward name="failure" path="/jsp/login.jsp" />
+        </action>
+        <action input="/jsp/showPlace.jsp" name="inputFormPlace" path="/sec/showPlace" type="com.openbravo.pos.pda.struts.actions.PlaceAction"
+        scope="request">
+            <forward name="success" path="/jsp/showPlace.jsp" />
+            <forward name="editing" path="/jsp/editPlace.jsp" />
+            <forward name="update" path="/jsp/placeAjax.jsp" />
+
+        </action>
+        <action input="/login.jsp" name="login" path="/login" type="com.openbravo.pos.pda.struts.actions.LoginAction" scope="request">
+            <forward name="success" path="/showFloors.do" />
+            <forward name="failure" path="/login.jsp" />
+        </action>
+        <action input="/jsp/showProducts.jsp" name="productsBean" path="/sec/showProducts"
+                type="com.openbravo.pos.pda.struts.actions.ProductAction" scope="request" >
+            <forward name="success" path="/jsp/showProducts.jsp" />
+            <forward name="failure" path="/login.jsp" />
+        </action>
+        <action input="/jsp/showFloors.jsp" name="FloorAjax" path="/sec/floorAjaxAction" scope="request" type="com.openbravo.pos.pda.struts.actions.FloorAjaxAction">
+            <forward name="success" path="/jsp/floorsAjax.jsp" />
+        </action>
+        <action input="/jsp/showProducts.jsp" name="productsBean" path="/sec/productAjaxAction" type="com.openbravo.pos.pda.struts.actions.ProductAjaxAction" scope="request">
+            <forward name="success" path="/jsp/productsAjax.jsp" />
+            <forward name="nextlevel" path="/jsp/productsAjaxNextLevel.jsp" />
+        </action>
+        <action input="/jsp/addProduct.jsp" path="/sec/addProduct" name="addProduct" type="com.openbravo.pos.pda.struts.actions.addProductAction" scope="request">
+            <forward name="success" path="/jsp/addProductAjax.jsp" />
+        </action>
+        <action input="/" name="modifyProduct" path="/sec/modifyProduct" scope="request" type="com.openbravo.pos.pda.struts.actions.ModifyProductAction">
+            <forward name="success" path="/jsp/showPlace.jsp" />
+        </action>
+        <action input="/" name="FloorForm" path="/sec/dynamicFloorAction" scope="request" type="com.openbravo.pos.pda.struts.actions.DynamicFloorAction" validate="false">
+            <forward name="success" path="/jsp/showPlace.jsp" />
+        </action>
+        <action path="/logout" type="com.openbravo.pos.pda.struts.actions.LogoutAction" name="logout">
+            <forward name="success" path="/login.jsp" />
+        </action>
+        <action path="/Welcome" forward="/login.jsp"/>
+    </action-mappings>
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor" nocache="true"/>
+    <message-resources parameter="com/openbravo/pos/pda/struts/ApplicationResource"/>    
+    <!-- ========================= Tiles plugin ===============================-->
+    <!--
+    This plugin initialize Tiles definition factory. This later can takes some
+    parameters explained here after. The plugin first read parameters from
+    web.xml, thenoverload them with parameters defined here. All parameters
+    are optional.
+    The plugin should be declared in each struts-config file.
+    - definitions-config: (optional)
+    Specify configuration file names. There can be several comma
+    separated file names (default: ?? )
+    - moduleAware: (optional - struts1.1)
+    Specify if the Tiles definition factory is module aware. If true
+    (default), there will be one factory for each Struts module.
+    If false, there will be one common factory for all module. In this
+    later case, it is still needed to declare one plugin per module.
+    The factory will be initialized with parameters found in the first
+    initialized plugin (generally the one associated with the default
+    module).
+    true : One factory per module. (default)
+    false : one single shared factory for all modules
+    - definitions-parser-validate: (optional)
+    Specify if xml parser should validate the Tiles configuration file.
+    true : validate. DTD should be specified in file header (default)
+    false : no validation
+    Paths found in Tiles definitions are relative to the main context.
+    -->
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+        <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+        <set-property property="moduleAware" value="true" />
+    </plug-in>
+    <!-- ========================= Validator plugin ================================= -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property
+            property="pathnames"
+            value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+</struts-config>
