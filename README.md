@@ -20,7 +20,7 @@ You can download Netbeans from [here](http://www.netbeans.org). And there is a q
 See http://wiki.openbravo.com for more documentation.
 
 ## Reporting issues
-Issues can be reported via the [Github issue tracker](https://github.com/iMartinezMateu/openbravopos/issues). 
+Issues can be reported via the [Github issue tracker](https://github.com/iMartinezMateu/openbravo-pos/issues). 
 
 Please take the time to review existing issues before submitting your own to prevent duplicates. Incorrect or poorly formed reports are wasteful and are subject to deletion.
 
